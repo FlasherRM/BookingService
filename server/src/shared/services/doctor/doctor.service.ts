@@ -23,4 +23,13 @@ export class DoctorService {
         })
         return newUser.save()
     }
+    async findOne(doctor: number) {
+        return await this.doctorModel.findById(doctor)
+    }
+    async addAppointment(doctor_id, app_id) {
+        const doctor = await this.doctorModel.findById(doctor_id);
+        doctor.appointments_accepted.push(app_id);
+
+        await doctor.save();
+    }
 }

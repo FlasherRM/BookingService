@@ -18,6 +18,15 @@ export class Doctor {
 
     @Prop({default: "doc"})
     type: string
+
+    @Prop({default: "therapist"})
+    spec: string
+
+    @Prop({default: true})
+    free: boolean
+
+    @Prop({default: []})
+    appointments_accepted: string[]
 }
 
 export const DoctorSchema = SchemaFactory.createForClass(Doctor);

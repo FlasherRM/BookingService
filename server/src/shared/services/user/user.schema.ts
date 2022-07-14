@@ -19,11 +19,8 @@ export class User {
     @Prop({default: "user"})
     type: string
 
-    @Prop({default: "therapist"})
-    spec: string
-
-    @Prop({default: true})
-    free: boolean
+    @Prop({default: []})
+    appointments: string[]
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

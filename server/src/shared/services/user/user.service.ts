@@ -23,4 +23,12 @@ export class UserService {
         })
         await newUser.save()
     }
+    async findOne(user: number) {
+        return await this.userModel.findById(user)
+    }
+    async addAppointment(user_id, app_id) {
+        const user = await this.userModel.findById(user_id)
+        user.appointments.push(app_id)
+        user.save()
+    }
 }

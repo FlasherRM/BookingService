@@ -9,15 +9,26 @@ export class UserSeed {
         private readonly userService: UserService,
     ) { }
 
-    @Command({ command: 'create:user', describe: 'create a user'})
-    async create() {
+    @Command({ command: 'create:user <username> <email>', describe: 'create a user'})
+    async create(@Positional({
+        name: 'username',
+        describe: 'the username',
+        type: 'string'
+    })
+                         username: string,
+                 @Positional({
+                     name: 'email',
+                     describe: 'the email',
+                     type: 'string'
+                 })
+                     email: string,) {
         const user = await this.userService.create({
-            name: 'Name',
+            name: username,
             phone: 999999999,
-            email: 'test@test.com',
+            email,
             reg_token: 'SAHH1ASDS33SADSA',
             photo_avatar: "uploads/file.png",
         });
-        console.log(user);
+        console.log("user added: " + user);
     }
 }

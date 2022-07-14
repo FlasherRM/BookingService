@@ -10,12 +10,23 @@ export class DoctorSeed {
         private readonly doctorService: DoctorService,
     ) { }
 
-    @Command({ command: 'create:doctor', describe: 'create a doctor'})
-    async create() {
+    @Command({ command: 'create:doctor <username> <email>', describe: 'create a doctor'})
+    async create(@Positional({
+        name: 'username',
+        describe: 'the username',
+        type: 'string'
+    })
+                         username: string,
+                 @Positional({
+                     name: 'email',
+                     describe: 'the email',
+                     type: 'string'
+                 })
+                     email: string,) {
         const doctor = await this.doctorService.create({
-            name: 'Name',
+            name: username,
             phone: 999999999,
-            email: 'test@test.com',
+            email,
             reg_token: 'SAHH1ASDS33SADSA',
             photo_avatar: "uploads/file.png"
         });
